@@ -1,0 +1,1820 @@
+---
+openapi: 3.0.0
+info:
+  title: Development Challenge for PHP
+  description: This is a sample API documentation for the Development Challenge for
+    PHP
+  version: 1.0.0
+paths:
+  "/api/actors":
+    get:
+      tags:
+      - Actors
+      summary: Display a listing of the actors
+      operationId: 91a2ff1cae626a1a599ae2e37c48053c
+      responses:
+        '200':
+          description: A listing of the actors
+          content:
+            application/json:
+              schema:
+                properties:
+                  actors:
+                    "$ref": "#/components/schemas/Actor"
+                type: object
+    post:
+      tags:
+      - Actors
+      summary: Store a newly created actor in storage
+      operationId: 49a96663e0b82b80d414aadfe3ce9646
+      requestBody:
+        description: Pass actor data
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                genre:
+                  type: string
+                birth_date:
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: Actor created successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  actor:
+                    "$ref": "#/components/schemas/Actor"
+                type: object
+        '422':
+          description: Invalid data passed
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  errors:
+                    type: object
+                type: object
+  "/api/actors/{actor}":
+    get:
+      tags:
+      - Actors
+      summary: Display the specified actor
+      operationId: b6540fce95111401e6d7ee1d2fe2b9ab
+      parameters:
+      - name: actor
+        in: path
+        description: Actor ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Actor details
+          content:
+            application/json:
+              schema:
+                properties:
+                  actor:
+                    "$ref": "#/components/schemas/Actor"
+                type: object
+        '404':
+          description: Actor not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+    put:
+      tags:
+      - Actors
+      summary: Update the specified actor in storage
+      operationId: 7e65a81bc322d2dd1f04e129e90b971b
+      parameters:
+      - name: actor
+        in: path
+        description: Actor ID
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: Pass actor data
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                genre:
+                  type: string
+                birth_date:
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: Actor updated successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  actor:
+                    "$ref": "#/components/schemas/Actor"
+                type: object
+        '404':
+          description: Actor not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+        '422':
+          description: Invalid data passed
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  errors:
+                    type: object
+                type: object
+    delete:
+      tags:
+      - Actors
+      summary: Remove the specified actor from storage
+      operationId: 3427d4db2d156404532c1980d5db08c4
+      parameters:
+      - name: actor
+        in: path
+        description: Actor ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Actor deleted successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  actor:
+                    "$ref": "#/components/schemas/Actor"
+                type: object
+        '404':
+          description: Actor not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+        '422':
+          description: Actor has movies or tv shows
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+  "/api/age-classifications":
+    get:
+      tags:
+      - Age Classification
+      summary: Display a listing of the resource
+      operationId: a74db77bced0aecdad9e0c75c8949942
+      responses:
+        '200':
+          description: A listing of the resource
+          content:
+            application/json:
+              schema:
+                properties:
+                  ageClassifications:
+                    "$ref": "#/components/schemas/AgeClassification"
+                type: object
+    post:
+      tags:
+      - Age Classification
+      summary: Store a newly created resource in storage
+      operationId: e3e60321bc983ab3f0f43976515da809
+      requestBody:
+        description: Pass age classification data
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                description:
+                  type: string
+                code:
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: Age Classification created successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  ageClassification:
+                    "$ref": "#/components/schemas/AgeClassification"
+                type: object
+  "/api/age-classifications/{ageClassification}":
+    get:
+      tags:
+      - Age Classification
+      summary: Display the specified resource
+      operationId: 1e32a491b4be33af06c5d9f48bb5a19c
+      parameters:
+      - name: ageClassification
+        in: path
+        description: Age Classification ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Age Classification details
+          content:
+            application/json:
+              schema:
+                properties:
+                  ageClassification:
+                    "$ref": "#/components/schemas/AgeClassification"
+                type: object
+        '404':
+          description: Age Classification not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+    put:
+      tags:
+      - Age Classification
+      summary: Update the specified resource in storage
+      operationId: 80b3153781f4c1477621e1a603bfe157
+      parameters:
+      - name: ageClassification
+        in: path
+        description: Age Classification ID
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: Pass age classification data
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                description:
+                  type: string
+                code:
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: Age Classification updated successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  ageClassification:
+                    "$ref": "#/components/schemas/AgeClassification"
+                type: object
+        '404':
+          description: Age Classification not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+    delete:
+      tags:
+      - Age Classification
+      summary: Remove the specified resource from storage
+      operationId: 2e6dbd8fec5d0361d97903263e611468
+      parameters:
+      - name: ageClassification
+        in: path
+        description: Age Classification ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Age Classification deleted successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  ageClassification:
+                    "$ref": "#/components/schemas/AgeClassification"
+                type: object
+        '403':
+          description: Age Classification cannot be deleted because it has movies
+            or tv shows
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+        '404':
+          description: Age Classification not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+  "/api/auth/login":
+    post:
+      tags:
+      - Auth
+      summary: Get a JWT via given credentials
+      operationId: 8dcb70df1020986038d098cc08d05dae
+      requestBody:
+        description: Pass user credentials
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: Token generated successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  token:
+                    type: string
+                  user:
+                    "$ref": "#/components/schemas/User"
+                type: object
+        '401':
+          description: Unauthorized
+  "/api/auth/logout":
+    get:
+      tags:
+      - Auth
+      summary: Log the user out (Invalidate the token)
+      operationId: a8dd056be3e98a38c657f73ed6cdef2d
+      responses:
+        '200':
+          description: Successfully logged out
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+        '401':
+          description: Unauthenticated
+  "/api/auth/refresh":
+    get:
+      tags:
+      - Auth
+      summary: Refresh a token
+      operationId: b655e0f8fa74e3a128cf4548d7fe3a55
+      responses:
+        '200':
+          description: Token refreshed successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  token:
+                    type: string
+                type: object
+        '401':
+          description: Unauthenticated
+  "/api/auth/user":
+    get:
+      tags:
+      - Auth
+      summary: Get the authenticated User
+      operationId: e23e5f9b32cba7953a224624a2a16544
+      responses:
+        '200':
+          description: User retrieved successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  user:
+                    "$ref": "#/components/schemas/User"
+                type: object
+        '401':
+          description: Unauthenticated
+  "/api/auth/register":
+    post:
+      tags:
+      - Auth
+      summary: Register a User
+      operationId: d764dd091cc4494ae0baf360b03319f3
+      requestBody:
+        description: Pass user credentials
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - name
+              - email
+              - password
+              properties:
+                name:
+                  type: string
+                  example: John Doe
+                email:
+                  type: string
+                  example: johndoe@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+              type: object
+      responses:
+        '200':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: User created successfully
+                  user:
+                    "$ref": "#/components/schemas/User"
+                type: object
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: The given data was invalid.
+                  errors:
+                    type: object
+                type: object
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: Server error
+                type: object
+  "/api/directors":
+    get:
+      tags:
+      - Directors
+      summary: Display a listing of the directors
+      operationId: '0232862a597e188b8d6b90bcff38654f'
+      responses:
+        '200':
+          description: A listing of the directors
+          content:
+            application/json:
+              schema:
+                properties:
+                  directors:
+                    "$ref": "#/components/schemas/Director"
+                type: object
+    post:
+      tags:
+      - Directors
+      summary: Store a newly created resource in storage
+      operationId: 745ff928efedfec1f1958d43a96aeade
+      requestBody:
+        description: Pass director data
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                genre:
+                  type: string
+                birth_date:
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: Director created successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  director:
+                    "$ref": "#/components/schemas/Director"
+                type: object
+        '422':
+          description: Invalid data passed
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  errors:
+                    type: object
+                type: object
+  "/api/directors/{director}":
+    get:
+      tags:
+      - Directors
+      summary: Display the specified director
+      operationId: ab3e1e4496f1c4d99a772ddcfd06547d
+      parameters:
+      - name: director
+        in: path
+        description: Director ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Director details
+          content:
+            application/json:
+              schema:
+                properties:
+                  director:
+                    "$ref": "#/components/schemas/Director"
+                type: object
+        '404':
+          description: Director not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+    put:
+      tags:
+      - Directors
+      summary: Update the specified director in storage
+      operationId: 2e8b01ff962d16043e3340cbb2f6d874
+      parameters:
+      - name: director
+        in: path
+        description: Director ID
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: Pass director data
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                genre:
+                  type: string
+                birth_date:
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: Director updated successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  director:
+                    "$ref": "#/components/schemas/Director"
+                type: object
+        '404':
+          description: Director not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+    delete:
+      tags:
+      - Directors
+      summary: Remove the specified director from storage
+      operationId: 9af1d1420510feb4e4ff4dad684204b4
+      parameters:
+      - name: director
+        in: path
+        description: Director ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Director deleted successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  director:
+                    "$ref": "#/components/schemas/Director"
+                type: object
+        '403':
+          description: Director has movies or tv shows or episodes
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+        '404':
+          description: Director not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+  "/api/movies":
+    get:
+      tags:
+      - Movies
+      summary: Display a listing of the movie
+      operationId: a7859dc5cd106bbeae5492e22df893ec
+      responses:
+        '200':
+          description: A listing of the movie
+          content:
+            application/json:
+              schema:
+                properties:
+                  movies:
+                    "$ref": "#/components/schemas/Movie"
+                type: object
+    post:
+      tags:
+      - Movies
+      summary: Store a newly created movie in storage
+      operationId: a303e8fe5382b02a193fa994ebef739f
+      requestBody:
+        description: Pass movie data
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                title:
+                  type: string
+                release_date:
+                  type: string
+                synopsis:
+                  type: string
+                rating:
+                  type: integer
+                length:
+                  type: string
+                genre:
+                  type: string
+                director_id:
+                  type: integer
+                age_classification_id:
+                  type: integer
+                actors:
+                  type: array
+                  items:
+                    type: integer
+              type: object
+      responses:
+        '201':
+          description: A newly created movie
+          content:
+            application/json:
+              schema:
+                properties:
+                  movie:
+                    "$ref": "#/components/schemas/Movie"
+                type: object
+        '404':
+          description: Director not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+  "/api/movies/{movie}":
+    get:
+      tags:
+      - Movies
+      summary: Display the specified movie
+      operationId: 36a46ca60c0936c9a2e4abd20099c5e5
+      parameters:
+      - name: movie
+        in: path
+        description: Movie id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: The specified movie
+          content:
+            application/json:
+              schema:
+                properties:
+                  movie:
+                    "$ref": "#/components/schemas/Movie"
+                type: object
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+    put:
+      tags:
+      - Movies
+      summary: Update the specified movie in storage
+      operationId: a7e02fe8561bf4f720ddeea18767bdd8
+      parameters:
+      - name: movie
+        in: path
+        description: Movie id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: Pass movie data
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                title:
+                  type: string
+                release_date:
+                  type: string
+                synopsis:
+                  type: string
+                rating:
+                  type: integer
+                length:
+                  type: string
+                genre:
+                  type: string
+                director_id:
+                  type: integer
+                age_classification_id:
+                  type: integer
+                actors:
+                  type: array
+                  items:
+                    type: integer
+              type: object
+      responses:
+        '200':
+          description: The specified movie
+          content:
+            application/json:
+              schema:
+                properties:
+                  movie:
+                    "$ref": "#/components/schemas/Movie"
+                type: object
+        '404':
+          description: Director not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+    delete:
+      tags:
+      - Movies
+      summary: Remove the specified movie from storage
+      operationId: 639d91f77a9b037a9083ee71509102da
+      parameters:
+      - name: movie
+        in: path
+        description: Movie id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Removed specified movie
+          content:
+            application/json:
+              schema:
+                properties:
+                  movie:
+                    "$ref": "#/components/schemas/Movie"
+                type: object
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+  "/api/tvshows":
+    get:
+      tags:
+      - Tv Shows
+      summary: Display a listing of the tv shows
+      operationId: 71f677ed5bcb2d9d77bd04c0bc99db55
+      responses:
+        '200':
+          description: A listing of the tv show
+          content:
+            application/json:
+              schema:
+                properties:
+                  tvShows:
+                    type: object
+                type: object
+    post:
+      tags:
+      - Tv Shows
+      summary: Store a newly created tv show in storage
+      operationId: 23de601ec5ea85096e5f0884a58ee543
+      requestBody:
+        description: Pass tv show data
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                title:
+                  type: string
+                release_date:
+                  type: string
+                rating:
+                  type: integer
+                genre:
+                  type: string
+                director_id:
+                  type: integer
+                age_classification_id:
+                  type: integer
+              type: object
+      responses:
+        '200':
+          description: Tv show created successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  tvShow:
+                    "$ref": "#/components/schemas/TvShow"
+                type: object
+        '422':
+          description: Invalid data passed
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  errors:
+                    type: object
+                type: object
+  "/api/tvshows/{tvShow}":
+    get:
+      tags:
+      - Tv Shows
+      summary: Display the specified tv show
+      operationId: 3d178d66c304f972efaf3bb29c0b9c69
+      responses:
+        '200':
+          description: Display the specified tv show
+          content:
+            application/json:
+              schema:
+                properties:
+                  tvShow:
+                    type: object
+                type: object
+        '404':
+          description: Tv Show not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+    put:
+      tags:
+      - Tv Shows
+      summary: Update the specified tv show in storage
+      operationId: 4816b509da8eefb1f0c55a185f4f291d
+      parameters:
+      - name: tvShow
+        in: path
+        description: TV Show ID
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: Pass tv show data
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                title:
+                  type: string
+                release_date:
+                  type: string
+                rating:
+                  type: integer
+                genre:
+                  type: string
+                director_id:
+                  type: integer
+                age_classification_id:
+                  type: integer
+              type: object
+      responses:
+        '200':
+          description: Tv show updated successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  tvShow:
+                    "$ref": "#/components/schemas/TvShow"
+                type: object
+        '404':
+          description: Tv Show not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+        '422':
+          description: Invalid data passed
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  errors:
+                    type: object
+                type: object
+    delete:
+      tags:
+      - Tv Shows
+      summary: Remove the specified tv show from storage
+      operationId: 8a06770cf7fd9dc22671c06e7f66ce48
+      responses:
+        '200':
+          description: Tv Show deleted successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  tvShow:
+                    type: object
+                type: object
+        '404':
+          description: Tv Show not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+  "/api/tvshows/{tvShow}/seasons/{season}/episodes":
+    get:
+      tags:
+      - Tv Show
+      summary: Display a listing of the episode
+      operationId: 29052d69ba00fd606c55f329f6df2774
+      parameters:
+      - name: tvShow
+        in: path
+        description: ID of the TV Show
+        required: true
+        schema:
+          type: integer
+      - name: season
+        in: path
+        description: ID of the Season
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A listing of the episode
+          content:
+            application/json:
+              schema:
+                properties:
+                  tvShowEpisodes:
+                    type: object
+                type: object
+    post:
+      tags:
+      - Tv Show
+      summary: Store a newly created episode in storage
+      operationId: 2321d56b3e4f4aa1bc44bf3ac678cd96
+      parameters:
+      - name: tvShow
+        in: path
+        description: ID of the TV Show
+        required: true
+        schema:
+          type: integer
+      - name: season
+        in: path
+        description: ID of the Season
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: Pass episode data
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                episode_number:
+                  type: integer
+                title:
+                  type: string
+                air_date:
+                  type: string
+                  format: date
+                synopsis:
+                  type: string
+                length:
+                  type: integer
+                actors:
+                  type: array
+                  items:
+                    type: integer
+                director_id:
+                  type: integer
+              type: object
+      responses:
+        '201':
+          description: Episode created successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  tvShowEpisode:
+                    type: object
+                type: object
+        '404':
+          description: Tv Show Season not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+  "/api/tvshows/{tvShow}/seasons/{season}/episodes/{episode}":
+    get:
+      tags:
+      - Tv Show
+      summary: Display the specified episode
+      operationId: ce256c547bf0ec4517be23f0df38ca12
+      parameters:
+      - name: tvShow
+        in: path
+        description: ID of the TV Show
+        required: true
+        schema:
+          type: integer
+      - name: season
+        in: path
+        description: ID of the Season
+        required: true
+        schema:
+          type: integer
+      - name: episode
+        in: path
+        description: ID of the Episode
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Display the specified episode
+          content:
+            application/json:
+              schema:
+                properties:
+                  tvShowEpisode:
+                    type: object
+                type: object
+        '404':
+          description: Tv Show Episode not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+    put:
+      tags:
+      - Tv Show
+      summary: Update the specified episode in storage
+      operationId: '046519edd64c43832fae21c9de9c2995'
+      parameters:
+      - name: tvShow
+        in: path
+        description: ID of the TV Show
+        required: true
+        schema:
+          type: integer
+      - name: season
+        in: path
+        description: ID of the Season
+        required: true
+        schema:
+          type: integer
+      - name: episode
+        in: path
+        description: ID of the Episode
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: Pass episode data
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                episode_number:
+                  type: integer
+                title:
+                  type: string
+                air_date:
+                  type: string
+                  format: date
+                synopsis:
+                  type: string
+                length:
+                  type: integer
+                actors:
+                  type: array
+                  items:
+                    type: integer
+                director_id:
+                  type: integer
+              type: object
+      responses:
+        '200':
+          description: Episode updated successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  tvShowEpisode:
+                    type: object
+                type: object
+        '404':
+          description: Tv Show Episode not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+    delete:
+      tags:
+      - Tv Show
+      summary: Remove the specified episode from storage
+      operationId: f601b2abd701dc0113061e39ee5375e9
+      parameters:
+      - name: tvShow
+        in: path
+        description: ID of the TV Show
+        required: true
+        schema:
+          type: integer
+      - name: season
+        in: path
+        description: ID of the Season
+        required: true
+        schema:
+          type: integer
+      - name: episode
+        in: path
+        description: ID of the Episode
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Episode deleted successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  tvShowEpisode:
+                    type: object
+                type: object
+        '404':
+          description: Tv Show Episode not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+  "/api/tvshows/{tvShow}/seasons":
+    get:
+      tags:
+      - Tv Show Seasons
+      summary: Display a listing of the seasons
+      operationId: 18998274aa938e277a017434dd62510f
+      responses:
+        '200':
+          description: A listing of the seasons
+          content:
+            application/json:
+              schema:
+                properties:
+                  tvShowSeasons:
+                    type: object
+                type: object
+    post:
+      tags:
+      - Tv Show Seasons
+      summary: Store a newly created season in storage
+      operationId: a0ea2037134c7a7b8232343ca76f6a02
+      requestBody:
+        description: Pass season data
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                tvshow_id:
+                  type: integer
+                season_number:
+                  type: integer
+              type: object
+      responses:
+        '200':
+          description: Season created successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  tvShowSeason:
+                    type: object
+                type: object
+        '404':
+          description: Tv Show not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+        '422':
+          description: Validation errors
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  errors:
+                    type: object
+                type: object
+  "/api/tvshows/seasons/{tvShowSeason}":
+    get:
+      tags:
+      - Tv Show Seasons
+      summary: Display the specified season
+      operationId: 3ba93b21d93fec5c8f37c6ee26bdabfc
+      responses:
+        '200':
+          description: Display the specified season
+          content:
+            application/json:
+              schema:
+                properties:
+                  tvShowSeason:
+                    type: object
+                type: object
+        '404':
+          description: Tv Show Season not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+    put:
+      tags:
+      - Tv Show Seasons
+      summary: Update the specified season in storage
+      operationId: 1acc5e926b0da7379a2848d124e0fbd5
+      parameters:
+      - name: tvShowSeason
+        in: path
+        description: Season ID
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: Pass season data
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                tvshow_id:
+                  type: integer
+                season_number:
+                  type: integer
+              type: object
+      responses:
+        '200':
+          description: Season updated successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  tvShowSeason:
+                    type: object
+                type: object
+        '404':
+          description: Tv Show Season not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+        '422':
+          description: Validation errors
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  errors:
+                    type: object
+                type: object
+    delete:
+      tags:
+      - Tv Show Seasons
+      summary: Remove the specified season from storage
+      operationId: 3f9b903e2be55a12082425735ed67357
+      responses:
+        '200':
+          description: Season deleted successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  tvShowSeason:
+                    type: object
+                type: object
+        '404':
+          description: Tv Show Season not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+components:
+  schemas:
+    GenderEnum:
+      description: 'Gender options: Male, Female'
+      type: string
+      enum:
+      - M
+      - F
+    GenreEnum:
+      description: 'Genre options: Action, Comedy, Drama, Fantasy, Horror, Mystery,
+        Romance, Science Fiction, Thriller'
+      type: string
+      enum:
+      - AC
+      - CO
+      - DR
+      - FA
+      - HO
+      - MY
+      - RO
+      - SF
+      - TH
+    Actor:
+      title: Actor
+      description: Actor model
+      properties:
+        id:
+          description: Actor id
+          type: integer
+          example: '1'
+        name:
+          description: Actor name
+          type: string
+          example: John Doe
+        birth_date:
+          description: Actor birth date
+          type: string
+          format: date
+          example: '1990-01-01'
+        gender:
+          "$ref": "#/components/schemas/GenderEnum"
+      type: object
+    AgeClassification:
+      title: AgeClassification
+      description: AgeClassification model
+      properties:
+        id:
+          description: AgeClassification id
+          type: integer
+          example: '1'
+        code:
+          description: AgeClassification code
+          type: string
+          example: G
+        description:
+          description: AgeClassification description
+          type: string
+          example: General Audiences
+      type: object
+    Director:
+      title: Director
+      description: Director model
+      properties:
+        id:
+          description: Director id
+          type: integer
+          example: '1'
+        name:
+          description: Director name
+          type: string
+          example: John Doe
+        birth_date:
+          description: Director birth date
+          type: string
+          format: date
+          example: '1990-01-01'
+        gender:
+          "$ref": "#/components/schemas/GenderEnum"
+      type: object
+    Movie:
+      title: Movie
+      description: Movie model
+      properties:
+        id:
+          description: Movie id
+          type: integer
+          example: '1'
+        title:
+          description: Movie title
+          type: string
+        release_date:
+          description: Movie release date
+          type: string
+          format: date
+        synopsis:
+          description: Movie synopsis
+          type: string
+        rating:
+          description: Movie rating
+          type: integer
+          example: '1'
+        length:
+          description: Movie length
+          type: time
+        genre:
+          "$ref": "#/components/schemas/GenreEnum"
+        director_id:
+          description: Movie director id
+          type: integer
+          example: '1'
+        age_classification_id:
+          description: Movie age classification id
+          type: integer
+          example: '1'
+        created_at:
+          description: Movie created at
+          type: string
+          format: date-time
+        updated_at:
+          description: Movie updated at
+          type: string
+          format: date-time
+      type: object
+    TvShow:
+      title: TvShow
+      description: TvShow model
+      properties:
+        id:
+          description: TvShow id
+          type: integer
+          example: '1'
+        title:
+          description: TvShow title
+          type: string
+          example: The Witcher
+        release_date:
+          description: TvShow release date
+          type: string
+          format: date-time
+          example: '2021-01-01 00:00:00'
+        synopsis:
+          description: TvShow synopsis
+          type: string
+          example: The Witcher is an American fantasy drama streaming television series
+            produced by Lauren Schmidt Hissrich. It is based on the book series of
+            the same name by Polish writer Andrzej Sapkowski.
+        rating:
+          description: TvShow rating
+          type: integer
+          example: '5'
+        genre:
+          "$ref": "#/components/schemas/GenreEnum"
+        director:
+          "$ref": "#/components/schemas/Director"
+        age_classification:
+          "$ref": "#/components/schemas/AgeClassification"
+        seasons:
+          description: TvShow seasons
+          type: array
+          items:
+            "$ref": "#/components/schemas/TvShowSeason"
+      type: object
+    TvShowEpisode:
+      title: TvShowEpisode
+      description: TvShow Episode model
+      required:
+      - episode_number
+      - title
+      - air_date
+      - synopsis
+      - length
+      - season_id
+      - director_id
+      properties:
+        id:
+          description: TvShow Episode id
+          type: integer
+          example: '1'
+        episode_number:
+          description: TvShow Episode number
+          type: integer
+        title:
+          description: TvShow Episode title
+          type: string
+          example: Episode 1
+        air_date:
+          description: TvShow Episode air date
+          type: string
+          format: date-time
+        synopsis:
+          description: TvShow Episode synopsis
+          type: string
+        length:
+          description: TvShow Episode length
+          type: time
+        season_id:
+          description: TvShow Episode season id
+          type: integer
+          example: '1'
+        director_id:
+          description: TvShow Episode director id
+          type: integer
+          example: '1'
+        created_at:
+          description: TvShow Episode created at
+          type: string
+          format: date-time
+          example: '2021-01-01 00:00:00'
+        updated_at:
+          description: TvShow Episode updated at
+          type: string
+          format: date-time
+          example: '2021-01-01 00:00:00'
+        deleted_at:
+          description: TvShow Episode deleted at
+          type: string
+          format: date-time
+          example: '2021-01-01 00:00:00'
+      type: object
+    TvShowSeason:
+      title: TvShowSeason
+      description: TvShow Season model
+      required:
+      - season_number
+      - tv_show_id
+      properties:
+        id:
+          description: TvShow Season id
+          type: integer
+          example: '1'
+        season_number:
+          description: TvShow Season number
+          type: integer
+          example: '1'
+        tv_show_id:
+          description: TvShow Season tv show id
+          type: integer
+          example: '1'
+        created_at:
+          description: TvShow Season created at
+          type: string
+          format: date-time
+          example: '2021-01-01 00:00:00'
+        updated_at:
+          description: TvShow Season updated at
+          type: string
+          format: date-time
+          example: '2021-01-01 00:00:00'
+        deleted_at:
+          description: TvShow Season deleted at
+          type: string
+          format: date-time
+          example: '2021-01-01 00:00:00'
+      type: object
+    User:
+      title: User
+      description: User model
+      required:
+      - name
+      - email
+      - password
+      properties:
+        id:
+          description: User id
+          type: integer
+          example: '1'
+        name:
+          description: User name
+          type: string
+          example: John Doe
+        email:
+          description: User email
+          type: string
+          example: johndoe@gmail.com
+        password:
+          description: User password
+          type: string
+          example: password
+        created_at:
+          description: User created at
+          type: string
+          format: date-time
+          example: '2021-01-01 00:00:00'
+        updated_at:
+          description: User updated at
+          type: string
+          format: date-time
+          example: '2021-01-01 00:00:00'
+        deleted_at:
+          description: User deleted at
+          type: string
+          format: date-time
+          example: '2021-01-01 00:00:00'
+      type: object
+tags:
+- name: Actors
+  description: API Endpoints of Actors Controller
+- name: Age Classification
+  description: API Endpoints of Age Classification Controller
+- name: Auth
+  description: API Endpoints of Auth Controller
+- name: Directors
+  description: API Endpoints of Directors Controller
+- name: Movies
+  description: API Endpoints of Movies Controller
+- name: Tv Shows
+  description: API Endpoints of Tv Shows Controller
